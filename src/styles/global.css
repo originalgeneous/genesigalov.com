@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+  }
+}
+
+@layer components {
+  .hero-bg {
+    background-image: url('/mountain-bg.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+  }
+
+  @media (min-width: 768px) {
+    .hero-bg {
+      background-attachment: fixed;
+      background-position: center top;
+    }
+  }
+
+  .gradient-text {
+    @apply text-slate-800;
+  }
+
+  .card {
+    @apply bg-white/85 backdrop-blur-md border border-slate-200 rounded-2xl p-6 hover:border-slate-300 hover:shadow-lg transition-all duration-300 shadow-md;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-full font-medium hover:from-sky-500 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-sky-500/25;
+  }
+}

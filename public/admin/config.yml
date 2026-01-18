@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "src/pages/index.astro"
+        fields:
+          - { label: "Content", name: "body", widget: "markdown" }
+
+  - name: "content"
+    label: "Site Content"
+    files:
+      - label: "About Section"
+        name: "about"
+        file: "src/content/about.json"
+        fields:
+          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
