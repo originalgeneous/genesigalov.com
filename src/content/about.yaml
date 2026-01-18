@@ -1,0 +1,18 @@
+paragraph1: >-
+  Gene Sigalov co-founded SimpleTexting, a business SMS platform that grew to
+  17,000+ customers including Starbucks, DHL, and FedEx. He scaled the company
+  to $20M ARR as CEO before its acquisition by Sinch in 2021.
+paragraph2: >-
+  Now he's building Upfirst.ai, an AI-powered answering service that helps small
+  businesses never miss a call. With a background in computer science and law
+  (B.S., J.D.), he's focused on creating technology that solves real problems
+  for business owners.
+stats:
+  - value: '17,000+'
+    label: Customers
+  - value: $20M
+    label: ARR at Exit
+  - value: '2'
+    label: Companies Built
+  - value: '1'
+    label: Successful Exit
