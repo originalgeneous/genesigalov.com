@@ -8,6 +8,9 @@ export default config({
     brand: {
       name: 'Gene Sigalov Site',
     },
+    navigation: {
+      Content: ['about', 'hero'],
+    },
   },
   singletons: {
     about: singleton({
