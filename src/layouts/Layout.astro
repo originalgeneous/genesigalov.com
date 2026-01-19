@@ -87,10 +87,10 @@ const structuredData = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
 
-    <!-- Fonts with display swap for performance -->
+    <!-- 1940s-inspired typography: Playfair Display for headlines, Crimson Pro for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
     <!-- Dark mode detection (prevents flash) -->
     <script is:inline>
@@ -105,7 +105,7 @@ const structuredData = {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
-  <body class="font-['Inter',sans-serif] bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+  <body class="font-['Crimson_Pro',Georgia,serif] bg-cream dark:bg-vintage-dark text-vintage-text dark:text-cream transition-colors duration-300">
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
