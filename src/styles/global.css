@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-slate-50 text-slate-800 antialiased;
+    @apply antialiased bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100;
   }
 }
 
@@ -25,15 +27,31 @@
     }
   }
 
+  /* Gradient text for headings - maintains good contrast in both modes */
   .gradient-text {
-    @apply text-slate-800;
+    @apply text-slate-800 dark:text-slate-100;
   }
 
+  /* Card component with proper dark mode support */
   .card {
-    @apply bg-white/85 backdrop-blur-md border border-slate-200 rounded-2xl p-6 hover:border-slate-300 hover:shadow-lg transition-all duration-300 shadow-md;
+    @apply bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200 dark:border-slate-700 rounded-2xl p-6 transition-all duration-300 shadow-md;
   }
 
+  .card:hover {
+    @apply border-slate-300 dark:border-slate-600 shadow-lg;
+  }
+
+  /* Primary button */
   .btn-primary {
     @apply inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-full font-medium hover:from-sky-500 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-sky-500/25;
+  }
+
+  /* Section backgrounds for proper layering */
+  .section-bg {
+    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm;
+  }
+
+  .section-bg-alt {
+    @apply bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-sm;
   }
 }

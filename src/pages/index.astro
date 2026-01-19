@@ -4,46 +4,89 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Gene Sigalov - Entrepreneur, Attorney & Technologist">
   <!-- Custom Cursor -->
-  <div id="cursor" class="fixed pointer-events-none z-[9999]">
-    <div id="cursor-dot" class="w-2 h-2 bg-slate-800 rounded-full absolute -translate-x-1/2 -translate-y-1/2 transition-transform duration-100"></div>
-    <div id="cursor-ring" class="w-10 h-10 border-2 border-slate-600 rounded-full absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out"></div>
+  <div id="cursor" class="fixed pointer-events-none z-[9999]" aria-hidden="true">
+    <div id="cursor-dot" class="w-2 h-2 bg-slate-800 dark:bg-slate-200 rounded-full absolute -translate-x-1/2 -translate-y-1/2 transition-transform duration-100"></div>
+    <div id="cursor-ring" class="w-10 h-10 border-2 border-slate-600 dark:border-slate-400 rounded-full absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out"></div>
   </div>
 
   <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm" role="navigation" aria-label="Main navigation">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-xl font-bold gradient-text magnetic-btn" data-magnetic>GS</a>
-      <div class="hidden md:flex gap-8">
-        <a href="#about" class="text-slate-600 hover:text-sky-600 transition-colors nav-link font-medium" data-magnetic>About</a>
-        <a href="#ventures" class="text-slate-600 hover:text-sky-600 transition-colors nav-link font-medium" data-magnetic>Ventures</a>
-        <a href="#legal" class="text-slate-600 hover:text-sky-600 transition-colors nav-link font-medium" data-magnetic>Legal</a>
-        <a href="#contact" class="text-slate-600 hover:text-sky-600 transition-colors nav-link font-medium" data-magnetic>Contact</a>
+      <a href="#" class="text-xl font-bold gradient-text magnetic-btn" data-magnetic aria-label="Gene Sigalov - Home">GS</a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors nav-link font-medium" data-magnetic>About</a>
+        <a href="#ventures" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors nav-link font-medium" data-magnetic>Ventures</a>
+        <a href="#legal" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors nav-link font-medium" data-magnetic>Legal</a>
+        <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors nav-link font-medium" data-magnetic>Contact</a>
+
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer" aria-label="Toggle dark mode">
+          <svg class="w-5 h-5 hidden dark:block text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+          </svg>
+          <svg class="w-5 h-5 block dark:hidden text-slate-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="md:hidden flex items-center gap-2">
+        <!-- Dark Mode Toggle Mobile -->
+        <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer" aria-label="Toggle dark mode">
+          <svg class="w-5 h-5 hidden dark:block text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+          </svg>
+          <svg class="w-5 h-5 block dark:hidden text-slate-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+        </button>
+
+        <!-- Hamburger Button -->
+        <button id="mobile-menu-btn" class="flex flex-col gap-1.5 p-2" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-line w-6 h-0.5 bg-slate-700 dark:bg-slate-300 transition-all duration-300"></span>
+          <span class="hamburger-line w-6 h-0.5 bg-slate-700 dark:bg-slate-300 transition-all duration-300"></span>
+          <span class="hamburger-line w-6 h-0.5 bg-slate-700 dark:bg-slate-300 transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-lg">
+      <div class="flex flex-col px-6 py-4 gap-4">
+        <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors py-2 mobile-nav-link font-medium">About</a>
+        <a href="#ventures" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors py-2 mobile-nav-link font-medium">Ventures</a>
+        <a href="#legal" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors py-2 mobile-nav-link font-medium">Legal</a>
+        <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors py-2 mobile-nav-link font-medium">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 hero-bg">
+  <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 hero-bg" aria-label="Introduction">
     <!-- Semi-transparent overlay for text readability -->
-    <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-white/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-white/60 dark:from-slate-950/60 dark:via-slate-950/40 dark:to-slate-950/80"></div>
 
     <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
       <!-- Profile Photo with enhanced glow -->
       <div class="mb-8 flex justify-center hero-element" data-delay="0">
         <div class="relative group photo-container">
           <!-- Animated glow ring -->
-          <div class="absolute -inset-4 rounded-full animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div class="absolute -inset-4 rounded-full animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true">
             <div class="absolute inset-0 bg-gradient-conic from-sky-400 via-blue-500 via-indigo-500 via-blue-500 to-sky-400 rounded-full blur-xl"></div>
           </div>
           <!-- Primary glow -->
-          <div class="absolute -inset-1 bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse-slow"></div>
+          <div class="absolute -inset-1 bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse-slow" aria-hidden="true"></div>
           <!-- Photo container -->
-          <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-2xl photo-inner">
+          <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden ring-4 ring-white dark:ring-slate-800 shadow-2xl photo-inner">
             <img
               src="/gene-sigalov.jpg"
-              alt="Gene Sigalov"
+              alt="Gene Sigalov - Entrepreneur, Attorney, and Technologist from Fort Lauderdale, Florida"
               class="w-full h-full object-cover brightness-110 contrast-105 saturate-90 transition-transform duration-700 group-hover:scale-110"
               style="filter: brightness(1.1) contrast(1.05) saturate(0.9) sepia(0.05);"
+              loading="eager"
             />
             <div class="absolute inset-0 bg-gradient-to-tr from-sky-500/10 via-transparent to-blue-500/10"></div>
           </div>
@@ -51,8 +94,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="mb-6 hero-element" data-delay="0.1">
-        <span class="inline-block px-4 py-2 bg-white/80 rounded-full text-sm text-slate-700 border border-slate-200 backdrop-blur-sm shadow-sm">
-          <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+        <span class="inline-block px-4 py-2 bg-white/80 dark:bg-slate-800/80 rounded-full text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 backdrop-blur-sm shadow-sm">
+          <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" aria-hidden="true"></span>
           Fort Lauderdale, Florida
         </span>
       </div>
@@ -63,21 +106,21 @@ import Layout from '../layouts/Layout.astro';
       </h1>
 
       <!-- Typewriter tagline -->
-      <p class="text-xl md:text-2xl text-slate-700 mb-8 max-w-2xl mx-auto hero-element" data-delay="0.3">
+      <p class="text-xl md:text-2xl text-slate-700 dark:text-slate-300 mb-8 max-w-2xl mx-auto hero-element" data-delay="0.3" aria-live="polite">
         <span id="typewriter" class="typewriter-text"></span>
-        <span class="typewriter-cursor text-sky-600">|</span>
+        <span class="typewriter-cursor text-sky-600" aria-hidden="true">|</span>
       </p>
 
       <div class="flex flex-wrap gap-4 justify-center hero-element" data-delay="0.4">
         <a href="#ventures" class="btn-primary magnetic-btn group" data-magnetic>
-          <svg class="w-5 h-5 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
           <span>View Ventures</span>
-          <div class="btn-shine"></div>
+          <div class="btn-shine" aria-hidden="true"></div>
         </a>
-        <a href="https://linkedin.com/in/sigalov" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-white/90 text-slate-700 rounded-full font-medium hover:bg-white transition-all duration-300 border border-slate-200 shadow-sm magnetic-btn group" data-magnetic>
-          <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://linkedin.com/in/sigalov" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-white/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 rounded-full font-medium hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 border border-slate-200 dark:border-slate-700 shadow-sm magnetic-btn group" data-magnetic aria-label="Connect on LinkedIn (opens in new tab)">
+          <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
           LinkedIn
@@ -85,7 +128,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Scroll indicator -->
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hero-element" data-delay="0.6">
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hero-element hidden md:block" data-delay="0.6" aria-hidden="true">
         <div class="scroll-indicator">
           <div class="mouse">
             <div class="wheel"></div>
@@ -100,55 +143,55 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-24 relative overflow-hidden">
+  <section id="about" class="py-24 relative overflow-hidden" aria-label="About Gene Sigalov">
     <!-- Section background -->
-    <div class="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 bg-white/70 dark:bg-slate-950/70 backdrop-blur-sm"></div>
     <!-- Section background accent -->
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sky-500/50 to-transparent"></div>
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sky-500/50 to-transparent" aria-hidden="true"></div>
 
     <div class="max-w-6xl mx-auto px-6 relative">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center reveal-element text-slate-800">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center reveal-element text-slate-800 dark:text-slate-100">
         About <span class="gradient-text scramble-text" data-text="Gene">Gene</span>
       </h2>
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="space-y-6">
-          <p class="text-lg text-slate-700 leading-relaxed reveal-element" data-delay="0.1">
+          <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed reveal-element" data-delay="0.1">
             Gene Sigalov co-founded SimpleTexting, a business SMS platform that grew to 17,000+ customers including Starbucks, DHL, and FedEx. He scaled the company to $20M ARR as CEO before its acquisition by Sinch in 2021.
           </p>
-          <p class="text-lg text-slate-700 leading-relaxed reveal-element" data-delay="0.2">
+          <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed reveal-element" data-delay="0.2">
             Now he's building Upfirst.ai, an AI-powered answering service that helps small businesses never miss a call. With a background in computer science and law (B.S., J.D.), he's focused on creating technology that solves real problems for business owners.
           </p>
         </div>
 
         <!-- Bento Grid Stats -->
         <div class="grid grid-cols-2 gap-4 bento-grid">
-          <div class="card text-center reveal-element stat-card group" data-delay="0.1">
-            <div class="text-4xl font-bold text-slate-800 mb-2">
+          <div class="card text-center reveal-element stat-card group" data-delay="0.1" role="figure" aria-label="17,000 plus customers">
+            <div class="text-4xl font-bold text-slate-800 dark:text-slate-100 mb-2">
               <span class="counter" data-target="17000" data-suffix="+">0</span>
             </div>
-            <div class="text-slate-600 group-hover:text-slate-800 transition-colors">Customers</div>
-            <div class="card-glow"></div>
+            <div class="text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">Customers</div>
+            <div class="card-glow" aria-hidden="true"></div>
           </div>
-          <div class="card text-center reveal-element stat-card group" data-delay="0.2">
-            <div class="text-4xl font-bold text-slate-800 mb-2">
+          <div class="card text-center reveal-element stat-card group" data-delay="0.2" role="figure" aria-label="20 million dollars ARR at exit">
+            <div class="text-4xl font-bold text-slate-800 dark:text-slate-100 mb-2">
               $<span class="counter" data-target="20" data-suffix="M">0</span>
             </div>
-            <div class="text-slate-600 group-hover:text-slate-800 transition-colors">ARR at Exit</div>
-            <div class="card-glow"></div>
+            <div class="text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">ARR at Exit</div>
+            <div class="card-glow" aria-hidden="true"></div>
           </div>
-          <div class="card text-center reveal-element stat-card group" data-delay="0.3">
-            <div class="text-4xl font-bold text-slate-800 mb-2">
+          <div class="card text-center reveal-element stat-card group" data-delay="0.3" role="figure" aria-label="2 companies built">
+            <div class="text-4xl font-bold text-slate-800 dark:text-slate-100 mb-2">
               <span class="counter" data-target="2" data-suffix="">0</span>
             </div>
-            <div class="text-slate-600 group-hover:text-slate-800 transition-colors">Companies Built</div>
-            <div class="card-glow"></div>
+            <div class="text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">Companies Built</div>
+            <div class="card-glow" aria-hidden="true"></div>
           </div>
-          <div class="card text-center reveal-element stat-card group" data-delay="0.4">
-            <div class="text-4xl font-bold text-slate-800 mb-2">
+          <div class="card text-center reveal-element stat-card group" data-delay="0.4" role="figure" aria-label="1 successful exit">
+            <div class="text-4xl font-bold text-slate-800 dark:text-slate-100 mb-2">
               <span class="counter" data-target="1" data-suffix="">0</span>
             </div>
-            <div class="text-slate-600 group-hover:text-slate-800 transition-colors">Successful Exit</div>
-            <div class="card-glow"></div>
+            <div class="text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">Successful Exit</div>
+            <div class="card-glow" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -156,128 +199,128 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Ventures Section -->
-  <section id="ventures" class="py-24 relative overflow-hidden">
+  <section id="ventures" class="py-24 relative overflow-hidden" aria-label="Business ventures">
     <!-- Section background -->
-    <div class="absolute inset-0 bg-slate-100/80 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 bg-white/70 dark:bg-slate-950/70 backdrop-blur-sm"></div>
 
     <div class="max-w-6xl mx-auto px-6 relative">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center reveal-element text-slate-800">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center reveal-element text-slate-800 dark:text-slate-100">
         <span class="gradient-text scramble-text" data-text="Ventures">Ventures</span>
       </h2>
-      <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto reveal-element" data-delay="0.1">
+      <p class="text-slate-600 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto reveal-element" data-delay="0.1">
         Building technology that actually works for small businesses
       </p>
 
       <div class="space-y-8">
         <!-- Upfirst -->
-        <div class="card group hover:scale-[1.01] transition-all duration-500 reveal-element venture-card" data-delay="0.2">
+        <article class="card group hover:scale-[1.01] transition-all duration-500 reveal-element venture-card" data-delay="0.2">
           <div class="flex flex-col md:flex-row md:items-center gap-6">
             <div class="flex-shrink-0">
-              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-green-500/25 group-hover:shadow-green-500/40 transition-shadow">
+              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-green-500/25 group-hover:shadow-green-500/40 transition-shadow" aria-hidden="true">
                 U
               </div>
             </div>
             <div class="flex-grow">
               <div class="flex flex-wrap items-center gap-3 mb-2">
-                <h3 class="text-2xl font-bold text-slate-800">Upfirst.ai</h3>
-                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium animate-pulse">Current</span>
-                <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm">Co-founder & CEO</span>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Upfirst.ai</h3>
+                <span class="px-3 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 rounded-full text-sm font-medium animate-pulse">Current</span>
+                <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full text-sm">Co-founder & CEO</span>
               </div>
-              <p class="text-slate-600 mb-4">
+              <p class="text-slate-600 dark:text-slate-400 mb-4">
                 AI-powered voice receptionist for small businesses. Answers calls 24/7 with human-like AI voices, takes messages, answers FAQs, and books appointments. Born from the frustration of missing client calls while running a law practice.
               </p>
-              <a href="https://upfirst.ai" target="_blank" class="text-sky-600 hover:text-sky-700 inline-flex items-center gap-2 group/link magnetic-btn font-medium" data-magnetic>
+              <a href="https://upfirst.ai" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-2 group/link magnetic-btn font-medium" data-magnetic>
                 <span>Visit upfirst.ai</span>
-                <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
               </a>
             </div>
           </div>
-          <div class="venture-shine"></div>
-        </div>
+          <div class="venture-shine" aria-hidden="true"></div>
+        </article>
 
         <!-- SimpleTexting -->
-        <div class="card group hover:scale-[1.01] transition-all duration-500 reveal-element venture-card" data-delay="0.3">
+        <article class="card group hover:scale-[1.01] transition-all duration-500 reveal-element venture-card" data-delay="0.3">
           <div class="flex flex-col md:flex-row md:items-center gap-6">
             <div class="flex-shrink-0">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-shadow">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-shadow" aria-hidden="true">
                 ST
               </div>
             </div>
             <div class="flex-grow">
               <div class="flex flex-wrap items-center gap-3 mb-2">
-                <h3 class="text-2xl font-bold text-slate-800">SimpleTexting</h3>
-                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Acquired by Sinch (2021)</span>
-                <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm">Co-founder & CEO</span>
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-100">SimpleTexting</h3>
+                <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">Acquired by Sinch (2021)</span>
+                <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full text-sm">Co-founder & CEO</span>
               </div>
-              <p class="text-slate-600 mb-4">
+              <p class="text-slate-600 dark:text-slate-400 mb-4">
                 Business texting platform that grew to 17,000+ users including Fortune 500 companies like Starbucks, DHL, and FedEx. Scaled to $20M in annualized revenue as CEO before being acquired by Sinch in 2021.
               </p>
-              <a href="https://simpletexting.com" target="_blank" class="text-sky-600 hover:text-sky-700 inline-flex items-center gap-2 group/link magnetic-btn font-medium" data-magnetic>
+              <a href="https://simpletexting.com" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-2 group/link magnetic-btn font-medium" data-magnetic>
                 <span>Visit simpletexting.com</span>
-                <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
               </a>
             </div>
           </div>
-          <div class="venture-shine"></div>
-        </div>
+          <div class="venture-shine" aria-hidden="true"></div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- Legal Section -->
-  <section id="legal" class="py-24 relative">
+  <section id="legal" class="py-24 relative" aria-label="Legal practice">
     <!-- Section background -->
-    <div class="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-sm"></div>
 
     <div class="max-w-6xl mx-auto px-6 relative">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center reveal-element text-slate-800">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center reveal-element text-slate-800 dark:text-slate-100">
         Legal <span class="gradient-text scramble-text" data-text="Practice">Practice</span>
       </h2>
-      <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto reveal-element" data-delay="0.1">
+      <p class="text-slate-600 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto reveal-element" data-delay="0.1">
         Bridging technology and law with a unique dual expertise
       </p>
 
-      <div class="card max-w-4xl mx-auto reveal-element legal-card" data-delay="0.2">
+      <article class="card max-w-4xl mx-auto reveal-element legal-card" data-delay="0.2">
         <div class="flex flex-col md:flex-row md:items-start gap-6">
           <div class="flex-shrink-0">
-            <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-amber-500/25">
+            <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-amber-500/25" aria-hidden="true">
               SF
             </div>
           </div>
           <div class="flex-grow">
-            <h3 class="text-2xl font-bold mb-4 text-slate-800">The Sigalov Firm, PLLC</h3>
-            <p class="text-slate-600 mb-6">
+            <h3 class="text-2xl font-bold mb-4 text-slate-800 dark:text-slate-100">The Sigalov Firm, PLLC</h3>
+            <p class="text-slate-600 dark:text-slate-400 mb-6">
               Founded in 2009, The Sigalov Firm is a boutique law practice specializing in No-Fault insurance law for healthcare providers. The firm has resolved over 16,000 cases before the American Arbitration Association.
             </p>
 
             <div class="grid md:grid-cols-2 gap-6 mb-6">
               <div>
-                <h4 class="font-semibold mb-3 text-slate-700">Bar Admissions</h4>
-                <ul class="space-y-2 text-slate-600">
+                <h4 class="font-semibold mb-3 text-slate-700 dark:text-slate-300">Bar Admissions</h4>
+                <ul class="space-y-2 text-slate-600 dark:text-slate-400">
                   <li class="flex items-center gap-2 bar-item">
-                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                     New York State Bar
                   </li>
                   <li class="flex items-center gap-2 bar-item">
-                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                     New Jersey State Bar
                   </li>
                   <li class="flex items-center gap-2 bar-item">
-                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                     Florida State Bar
                   </li>
                   <li class="flex items-center gap-2 bar-item">
-                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                     USPTO (Patent Bar)
@@ -285,16 +328,16 @@ import Layout from '../layouts/Layout.astro';
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold mb-3 text-slate-700">Recognition</h4>
-                <ul class="space-y-2 text-slate-600">
+                <h4 class="font-semibold mb-3 text-slate-700 dark:text-slate-300">Recognition</h4>
+                <ul class="space-y-2 text-slate-600 dark:text-slate-400">
                   <li class="flex items-center gap-2 recognition-item">
-                    <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                     </svg>
                     Super Lawyers Rising Stars (2015-2022)
                   </li>
                   <li class="flex items-center gap-2 recognition-item">
-                    <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                     </svg>
                     Top-rated Insurance Coverage Attorney
@@ -303,41 +346,78 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </div>
 
-            <a href="https://sigalovfirm.com" target="_blank" class="text-sky-600 hover:text-sky-700 inline-flex items-center gap-2 group magnetic-btn font-medium" data-magnetic>
+            <a href="https://sigalovfirm.com" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-2 group magnetic-btn font-medium" data-magnetic>
               <span>Visit sigalovfirm.com</span>
-              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
             </a>
           </div>
         </div>
-      </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="py-16 relative overflow-hidden" aria-label="Newsletter signup">
+    <div class="absolute inset-0 bg-gradient-to-r from-sky-600 to-indigo-600"></div>
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRoLTJ2LTRoMnY0em0wLTZoLTJ2LTRoMnY0em0tNiA2aC0ydi00aDJ2NHptMC02aC0ydi00aDJ2NHoiLz48L2c+PC9nPjwvc3ZnPg==')]" aria-hidden="true"></div>
+
+    <div class="max-w-4xl mx-auto px-6 text-center relative">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 reveal-element">
+        Stay in the Loop
+      </h2>
+      <p class="text-sky-100 mb-8 max-w-xl mx-auto reveal-element" data-delay="0.1">
+        Get insights on entrepreneurship, technology, and building businesses that scale. No spam, just valuable content.
+      </p>
+
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto reveal-element" data-delay="0.2" action="#" method="POST">
+        <label for="email" class="sr-only">Email address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+          class="flex-1 px-4 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+        />
+        <button
+          type="submit"
+          class="px-6 py-3 bg-white text-sky-600 font-semibold rounded-full hover:bg-sky-50 transition-colors shadow-lg"
+        >
+          Subscribe
+        </button>
+      </form>
+
+      <p class="text-sky-200 text-sm mt-4 reveal-element" data-delay="0.3">
+        Join 500+ entrepreneurs and builders
+      </p>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-24 relative">
+  <section id="contact" class="py-24 relative" aria-label="Contact information">
     <!-- Section background -->
-    <div class="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 bg-white/70 dark:bg-slate-950/70 backdrop-blur-sm"></div>
 
     <div class="max-w-4xl mx-auto px-6 text-center relative">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 reveal-element text-slate-800">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 reveal-element text-slate-800 dark:text-slate-100">
         Let's <span class="gradient-text scramble-text" data-text="Connect">Connect</span>
       </h2>
-      <p class="text-slate-600 mb-12 max-w-2xl mx-auto reveal-element" data-delay="0.1">
+      <p class="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto reveal-element" data-delay="0.1">
         Whether you're a fellow entrepreneur, potential partner, or just want to say hello - I'd love to hear from you.
       </p>
 
       <div class="flex flex-wrap gap-4 justify-center reveal-element" data-delay="0.2">
-        <a href="https://linkedin.com/in/sigalov" target="_blank" class="btn-primary magnetic-btn group relative overflow-hidden" data-magnetic>
-          <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://linkedin.com/in/sigalov" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic-btn group relative overflow-hidden" data-magnetic aria-label="Connect on LinkedIn (opens in new tab)">
+          <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
           <span>Connect on LinkedIn</span>
-          <div class="btn-shine"></div>
+          <div class="btn-shine" aria-hidden="true"></div>
         </a>
-        <a href="https://x.com/genesigalov" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-white/90 text-slate-700 rounded-full font-medium hover:bg-white transition-all duration-300 border border-slate-200 shadow-sm magnetic-btn group" data-magnetic>
-          <svg class="w-5 h-5 transition-transform group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://x.com/genesigalov" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-white/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 rounded-full font-medium hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 border border-slate-200 dark:border-slate-700 shadow-sm magnetic-btn group" data-magnetic aria-label="Follow on X (opens in new tab)">
+          <svg class="w-5 h-5 transition-transform group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>
           Follow on X
@@ -347,11 +427,41 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 border-t border-slate-200 relative bg-white/80 backdrop-blur-sm">
-    <div class="max-w-6xl mx-auto px-6 text-center text-slate-500">
+  <footer class="py-8 border-t border-slate-200 dark:border-slate-800 relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm pb-24 md:pb-8">
+    <div class="max-w-6xl mx-auto px-6 text-center text-slate-500 dark:text-slate-400">
       <p class="reveal-element">&copy; {new Date().getFullYear()} Gene Sigalov. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Bottom Mobile Navigation -->
+  <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-lg" role="navigation" aria-label="Mobile navigation">
+    <div class="flex justify-around items-center py-2">
+      <a href="#" class="flex flex-col items-center gap-1 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors" aria-label="Home">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+        </svg>
+        <span class="text-xs font-medium">Home</span>
+      </a>
+      <a href="#about" class="flex flex-col items-center gap-1 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors" aria-label="About">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+        <span class="text-xs font-medium">About</span>
+      </a>
+      <a href="#ventures" class="flex flex-col items-center gap-1 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors" aria-label="Ventures">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="text-xs font-medium">Work</span>
+      </a>
+      <a href="#contact" class="flex flex-col items-center gap-1 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors" aria-label="Contact">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        <span class="text-xs font-medium">Contact</span>
+      </a>
+    </div>
+  </nav>
 </Layout>
 
 <style>
@@ -369,6 +479,13 @@ import Layout from '../layouts/Layout.astro';
     border-color: rgba(71, 85, 105, 0.5);
     background: rgba(71, 85, 105, 0.1);
   }
+
+  :global(.dark) #cursor-ring.expanded {
+    border-color: rgba(148, 163, 184, 0.5);
+    background: rgba(148, 163, 184, 0.1);
+  }
+
+  /* Card styles are now in global.css with Tailwind classes */
 
   /* Morphing blobs */
   .blob {
@@ -404,7 +521,7 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
-  /* Scroll indicator */
+  /* Scroll indicator - hidden on mobile */
   .scroll-indicator {
     display: flex;
     flex-direction: column;
@@ -420,6 +537,10 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
   }
 
+  :global(.dark) .mouse {
+    border-color: rgba(148, 163, 184, 0.5);
+  }
+
   .wheel {
     width: 4px;
     height: 8px;
@@ -430,6 +551,10 @@ import Layout from '../layouts/Layout.astro';
     left: 50%;
     transform: translateX(-50%);
     animation: scroll-wheel 2s ease-in-out infinite;
+  }
+
+  :global(.dark) .wheel {
+    background: rgba(148, 163, 184, 0.8);
   }
 
   @keyframes scroll-wheel {
@@ -451,6 +576,10 @@ import Layout from '../layouts/Layout.astro';
     border-bottom: 2px solid rgba(71, 85, 105, 0.5);
     transform: rotate(45deg);
     animation: arrow-scroll 2s ease-in-out infinite;
+  }
+
+  :global(.dark) .arrow-scroll span {
+    border-color: rgba(148, 163, 184, 0.5);
   }
 
   .arrow-scroll span:nth-child(2) {
@@ -536,37 +665,6 @@ import Layout from '../layouts/Layout.astro';
     transform: translate(-50%, -50%) scale(1);
   }
 
-  /* Grid background */
-  .grid-background {
-    background-image:
-      linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: grid-move 20s linear infinite;
-  }
-
-  @keyframes grid-move {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(50px); }
-  }
-
-  /* Floating animation */
-  @keyframes float {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-20px) translateX(10px); }
-    50% { transform: translateY(-10px) translateX(-10px); }
-    75% { transform: translateY(-30px) translateX(5px); }
-  }
-
-  .animate-float {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float 8s ease-in-out infinite;
-    animation-delay: -4s;
-  }
-
   /* Slow animations */
   .animate-spin-slow {
     animation: spin 8s linear infinite;
@@ -591,23 +689,7 @@ import Layout from '../layouts/Layout.astro';
     background: conic-gradient(from 0deg, #60a5fa, #a78bfa, #f472b6, #a78bfa, #60a5fa);
   }
 
-  /* Quote block animation */
-  .quote-block {
-    position: relative;
-  }
-
-  .quote-block::before {
-    content: '"';
-    position: absolute;
-    left: -10px;
-    top: -20px;
-    font-size: 80px;
-    color: rgba(14, 165, 233, 0.2);
-    font-family: Georgia, serif;
-    line-height: 1;
-  }
-
-  /* Reveal animations - visible by default for reliability */
+  /* Reveal animations */
   .hero-element {
     opacity: 1;
     transform: translateY(0);
@@ -638,21 +720,23 @@ import Layout from '../layouts/Layout.astro';
       transform: translateY(0);
     }
   }
-
-  /* Particle styles */
-  .particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(14, 165, 233, 0.4);
-    border-radius: 50%;
-    pointer-events: none;
-  }
 </style>
 
 <script>
   // GSAP and animations initialization
   document.addEventListener('DOMContentLoaded', () => {
+    // Dark mode toggle
+    const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    themeToggles.forEach(toggle => {
+      toggle.addEventListener('click', toggleDarkMode);
+    });
+
     // Hero elements animation
     const heroElements = document.querySelectorAll('.hero-element');
     heroElements.forEach((el, i) => {
@@ -790,22 +874,6 @@ import Layout from '../layouts/Layout.astro';
       });
     });
 
-    // Floating particles
-    const particlesContainer = document.getElementById('particles');
-    if (particlesContainer) {
-      for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.opacity = (Math.random() * 0.5 + 0.2).toString();
-        particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
-        particle.style.animation = `float ${Math.random() * 10 + 10}s ease-in-out infinite`;
-        particle.style.animationDelay = `-${Math.random() * 10}s`;
-        particlesContainer.appendChild(particle);
-      }
-    }
-
     // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -819,5 +887,40 @@ import Layout from '../layouts/Layout.astro';
         }
       });
     });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', (!isOpen).toString());
+
+        const lines = mobileMenuBtn.querySelectorAll('.hamburger-line') as NodeListOf<HTMLElement>;
+        if (mobileMenu.classList.contains('hidden')) {
+          lines[0].style.transform = '';
+          lines[1].style.opacity = '1';
+          lines[2].style.transform = '';
+        } else {
+          lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          lines[1].style.opacity = '0';
+          lines[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        }
+      });
+
+      // Close menu when clicking a link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          const lines = mobileMenuBtn.querySelectorAll('.hamburger-line') as NodeListOf<HTMLElement>;
+          lines[0].style.transform = '';
+          lines[1].style.opacity = '1';
+          lines[2].style.transform = '';
+        });
+      });
+    }
   });
 </script>

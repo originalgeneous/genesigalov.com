@@ -4,24 +4,151 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = "Serial Entrepreneur, Attorney, and Technologist" } = Astro.props;
+const {
+  title,
+  description = "Serial Entrepreneur, Attorney, and Technologist building technology that works for small businesses.",
+  ogImage = "/og-image.jpg"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://genesigalov.com");
+
+// Structured data for personal site
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gene Sigalov",
+  "url": "https://genesigalov.com",
+  "image": "https://genesigalov.com/gene-sigalov.jpg",
+  "description": "Serial Entrepreneur, Attorney, and Technologist",
+  "jobTitle": ["Co-founder & CEO", "Attorney"],
+  "worksFor": [
+    {
+      "@type": "Organization",
+      "name": "Upfirst.ai",
+      "url": "https://upfirst.ai"
+    },
+    {
+      "@type": "Organization",
+      "name": "The Sigalov Firm, PLLC",
+      "url": "https://sigalovfirm.com"
+    }
+  ],
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "SimpleTexting (Acquired by Sinch)"
+  },
+  "sameAs": [
+    "https://linkedin.com/in/sigalov",
+    "https://x.com/genesigalov"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Fort Lauderdale",
+    "addressRegion": "Florida",
+    "addressCountry": "US"
+  },
+  "knowsAbout": ["Entrepreneurship", "Law", "Technology", "SaaS", "AI"]
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="author" content="Gene Sigalov" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Gene Sigalov" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@genesigalov" />
+
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+
+    <!-- Fonts with display swap for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Dark mode detection (prevents flash) -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
-  <body class="font-['Inter',sans-serif]">
-    <slot />
+  <body class="font-['Inter',sans-serif] bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main id="main-content">
+      <slot />
+    </main>
   </body>
 </html>
+
+<style is:global>
+  /* Skip link for accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #0284c7;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    border-radius: 0 0 4px 0;
+    font-weight: 500;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Focus visible for accessibility */
+  :focus-visible {
+    outline: 2px solid #0284c7;
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
